@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 
+import hero1 from '../assets/imgs/cabania_hero_1.jpg'
+import hero2 from '../assets/imgs/cabania_hero_2.jpg'
+import hero3 from '../assets/imgs/cabania_hero_3.jpg'
+
 interface Slide {
     id: number;
     title: string;
@@ -12,19 +16,19 @@ const slides: Slide[] = [
     id: 1,
     title: "Diseño y construcción a la medida de tus necesidades",
     subtitle: "Solo necesitas el terreno. Nosotros construimos tu refugio ideal.",
-    image: "src/assets/imgs/cabania_hero_1.jpg",
+    image: hero1,
   },
   {
     id: 2,
     title: "Tu cabaña en medio de la naturaleza",
     subtitle: "Personalizamos cada detalle para que tu cabaña sea única.",
-    image: "src/assets/imgs/cabania_hero_2.jpg",
+    image: hero2,
   },
   {
     id: 3,
     title: "Invierte en tranquilidad",
     subtitle: "Convierte tu terreno en una propiedad rentable o tu escape perfecto.",
-    image: "src/assets/imgs/cabania_hero_3.jpg",
+    image: hero3,
   },
 ];
 
