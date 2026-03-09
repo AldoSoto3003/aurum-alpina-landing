@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Caraque';
+    src: local('Caraque'), url('./assets/fonts/Caraque_Trial_RgSolid.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.caraque-rg-font {
+    font-family: 'Caraque', sans-serif; /* Add a fallback font */
+}
+
+@theme{
+    --color-primary:#BF8C2E;
+    --color-secondary:#E9D980;
+    --color-tertiary:#E2B9A0;
+    --color-fourth:#FAD8E1;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
