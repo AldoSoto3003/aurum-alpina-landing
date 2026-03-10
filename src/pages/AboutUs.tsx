@@ -32,7 +32,7 @@ export default function AboutUs() {
               <div className="flex justify-center items-center">
                 <img 
                   src={foto} 
-                  alt="Cheesecake de fresa fresco con fresas enteras y picadas"
+                  alt="Sobre nosotros"
                   className="h-auto md:max-h-160 rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
                 />
               </div>
