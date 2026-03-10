@@ -42,7 +42,7 @@ export default function OurProducts() {
           onClick={() => scroll("left")}
           className="absolute left-0 top-[40%] -translate-y-1/2 z-10 bg-white shadow-lg p-3 rounded-full"
         >
-          <FaArrowLeft size={20}/>
+          <FaArrowLeft size={15}/>
         </button>
         <div
           ref={scrollRef}
@@ -60,7 +60,7 @@ export default function OurProducts() {
           onClick={() => scroll("right")}
           className="absolute right-0 top-[40%] -translate-y-1/2 z-10 bg-white shadow-lg p-3 rounded-full"
         >
-          <FaArrowRight size={20}/>
+          <FaArrowRight size={15}/>
         </button>
       </div>
     </section>
