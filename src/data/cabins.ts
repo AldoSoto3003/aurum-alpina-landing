@@ -6,7 +6,7 @@ export const cabins: Cabin[] = [
     slug:"alpina",
     description: "Diseño triangular moderno, ideal para climas boscosos y espacios íntimos.",
     price: 774000,
-    size:"55",
+    size:"55 m²",
     images: [
       "/imgs/alpina/alpina_1.jpg",
       "/imgs/alpina/alpina_2.jpg",
@@ -56,7 +56,7 @@ export const cabins: Cabin[] = [
     slug:"aurum",
     description: "Modelo contemporáneo con acabados premium y amplios ventanales.",
     price: 936000,
-    size:"71",
+    size:"71 m²",
     images: [
       "/imgs/aurum/aurum_1.jpg",
       "/imgs/aurum/aurum_2.jpg",
@@ -103,7 +103,7 @@ export const cabins: Cabin[] = [
     slug:"brisa",
     description: "Espacios abiertos y frescos, perfecta para zonas cálidas y vistas panorámicas.",
     price: 1620000,
-    size:"83",
+    size:"83 m²",
     images: [
       "/imgs/brisa/brisa_1.jpg",
       "/imgs/brisa/brisa_2.jpg",
@@ -152,13 +152,13 @@ export const cabins: Cabin[] = [
     slug:"villa",
     description: "Mayor amplitud y confort para quienes buscan una experiencia residencial completa.",
     price: 1926000,
-    size:"120",
+    size:"120 m²",
     images: [
-      "/imgs/alpina/alpina_1.jpg",
-      "/imgs/alpina/alpina_2.jpg",
-      "/imgs/alpina/alpina_3.jpg",
-      "/imgs/alpina/alpina_4.jpg",
-      "/imgs/alpina/alpina_5.jpg",
+      "/imgs/villa/villa_1.jpg",
+      "/imgs/villa/villa_2.jpg",
+      "/imgs/villa/villa_3.jpg",
+      "/imgs/villa/villa_4.jpg",
+      "/imgs/villa/villa_4.jpg",
     ],
     distribution: [
       "3 recamaras",

@@ -1,11 +1,11 @@
-import foto from "/src/assets/imgs/about_us.jpg";
+import video from "../assets/videos/isv.mp4"
 
 export default function AboutUs() {
   
   return (
     <section id="Nosotros" className="my-10 p-10">
       <div className="mx-auto max-w-7xl">
-        <div className="grid md:grid-cols-2">
+        <div className="grid lg:grid-cols-2">
           <div className="px-6 py-10 md:px-14 md:py-14 flex items-center md:order-2">
             <div className="max-w-xl">
                 <h2 className="font-fraunces text-5xl leading-none md:text-6xl text-[#241a1a]">
@@ -27,15 +27,15 @@ export default function AboutUs() {
           </div>
 
           <div className="relative">
-            <div className="absolute  rounded-full blur-3xl transform scale-75"></div>
-            <div className="relative">
-              <div className="flex justify-center items-center">
-                <img 
-                  src={foto} 
-                  alt="Sobre nosotros"
-                  className="h-auto md:max-h-160 rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+            <div className="flex justify-center items-center h-full">
+              <video
+              src={video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-auto md:max-h-160 rounded-2xl shadow-2xl object-cover hover:scale-105 transition-transform duration-500"
+            />
             </div>
           </div>
         </div>

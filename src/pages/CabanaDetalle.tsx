@@ -141,7 +141,7 @@ export default function CabinDetails() {
           <div className="flex-1 my-10 bg-white shadow-xl rounded-xl p-6 h-fit">
 
             <h2 className="text-2xl font-semibold mb-4">
-              Construcción de {cabin.size} m²
+              Construcción de {cabin.size}
             </h2>
 
             <p className="text-3xl font-bold text-primary mb-6">

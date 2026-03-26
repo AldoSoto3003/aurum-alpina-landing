@@ -1,4 +1,4 @@
-import { FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -13,9 +13,9 @@ export default function Footer() {
               <div>
                 <p className="font-semibold">Tijuana, BC:</p>
                 <p className="mt-2 text-white/70">
-                  Prolongación Paseo de los héroes 13186 - 4B, Anexa 20 de noviembre 22100, Tijuana
+                  Avenida 20 de noviembre #12721, Col. 20 de noviembre C.P. 22100 Tijuana BC.
                 </p>
-                <p className="mt-2 text-white/70">Tel: (664) 342 9264 ó (664) 370 5547</p>
+                <p className="mt-2 text-white/70">Tel: (661) 172 2565</p>
               </div>
             </div>
           </div>
@@ -23,21 +23,12 @@ export default function Footer() {
 
         <div className="mt-12 flex items-center gap-6">
             <a
-                href="https://www.facebook.com/isvrealestate"
+                href="https://www.facebook.com/profile.php?id=100063776591871"
                 target="_blank"
                 aria-label="Facebook"
                 className="text-white/80 hover:text-white transition"
             >
                 <FaFacebook size={40}/>
-            </a>
-
-            <a
-                href="https://www.instagram.com/isv_bc/"
-                target="_blank"
-                aria-label="Instagram"
-                className="text-white/80 hover:text-white transition"
-            >    
-                <FaInstagram size={40}/>       
             </a>
         </div>
       </div>
@@ -47,13 +38,6 @@ export default function Footer() {
           <p className="text-xs text-white/60">
             © {new Date().getFullYear()}, Altum Alpina
           </p>
-          <a 
-            href="https://aldosoto.dev/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-xs text-white/60">
-            Website created by: Aldo Soto ↗️
-          </a>
         </div>
       </div>
     </div>

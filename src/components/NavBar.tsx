@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { RxHamburgerMenu } from "react-icons/rx";
 
-import logo from '/logo.png'
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import logo from '/logo_isv.png'
+import { FaFacebook } from 'react-icons/fa';
 
 export default function NavBar() {
     const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function NavBar() {
             ${scrolled ? "shadow-lg bg-white" : "bg-transparent"}`}>
             <nav className='w-full flex items-center justify-between md:px-10 py-2'>
                 <div className='px-5'>
-                    <img src={logo} alt="logo" className='w-12'/>
+                    <img src={logo} alt="logo" className='w-20'/>
                 </div>
                 <div className={`text-base  px-10 hidden md:flex items-center gap-5 ${scrolled ? "text-black" : "text-white"}`}>
                     <a href="#Inicio">Inicio</a>
@@ -34,15 +34,7 @@ export default function NavBar() {
                     <div className='flex gap-2'>
                       <div className='flex items-center justify-center gap-2'>
                         <a
-                          href="https://www.instagram.com/isv_bc/"
-                          target="_blank"
-                          aria-label="Instagram"
-                          className="text-white/80 hover:text-white transition"
-                        >
-                          <FaInstagram size={35} className='text-secondary'/>
-                        </a>
-                        <a
-                          href="https://www.facebook.com/isvrealestate"
+                          href="https://www.facebook.com/profile.php?id=100063776591871"
                           target="_blank"
                           aria-label="Instagram"
                           className="text-white/80 hover:text-white transition"
@@ -82,15 +74,7 @@ export default function NavBar() {
                     </ul>
                     <div className='flex items-center justify-center gap-2'>
                         <a
-                          href="https://www.instagram.com/altumrealestategroup/"
-                          target="_blank"
-                          aria-label="Instagram"
-                          className="text-white/80 hover:text-white transition"
-                        >
-                          <FaInstagram size={35} className='text-primary'/>
-                        </a>
-                        <a
-                          href="https://www.facebook.com/isvrealestate"
+                          href="https://www.facebook.com/profile.php?id=100063776591871"
                           target="_blank"
                           aria-label="Instagram"
                           className="text-white/80 hover:text-white transition"
