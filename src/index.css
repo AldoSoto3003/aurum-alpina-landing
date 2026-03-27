@@ -13,9 +13,10 @@
 
 @theme{
     --color-primary:#BF8C2E;
-    --color-secondary:#E9D980;
+    --color-secondary:#BF8C2E;
     --color-tertiary:#E2B9A0;
     --color-fourth:#FAD8E1;
+    
 }
 
 .no-scrollbar::-webkit-scrollbar {

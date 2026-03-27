@@ -45,7 +45,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className='relative w-full h-screen overflow-hidden'>
+        <section id='Inicio' className='relative w-full h-screen overflow-hidden'>
           {slides.map((slide, index) => (
             <div
               key={slide.id}
@@ -87,7 +87,7 @@ export default function Hero() {
                     target="_blank"
                     rel="noopener noreferrer"    
                     aria-label="Abrir chat de WhatsApp" 
-                    className="bg-primary text-white px-6 py-3 rounded-full font-semibold transition hover:cursor-pointer hover:scale-120"
+                    className="bg-secondary text-white px-6 py-3 rounded-full font-semibold transition hover:cursor-pointer hover:scale-120"
                   >
                     Cotizar ahora
                   </a>
@@ -108,7 +108,7 @@ export default function Hero() {
                 key={index}
                 onClick={() => setCurrent(index)}
                 className={`w-3 h-3 md:w-5 md:h-5 rounded-full transition hover:cursor-pointer hover:scale-150 ${
-                  current === index ? "bg-primary scale-125" : "bg-primary/50"
+                  current === index ? "bg-secondary scale-125" : "bg-secondary/50"
                 }`}
               />
             ))}

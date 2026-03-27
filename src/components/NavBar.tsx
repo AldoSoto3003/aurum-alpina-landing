@@ -30,7 +30,14 @@ export default function NavBar() {
                     <a href="#Inicio">Inicio</a>
                     <a href="#Nosotros">Nosotros</a>
                     <a href="#Modelos">Cabañas</a>
-                    <a href="#Contacto" className='px-6 py-2 rounded-lg text-white bg-primary'>Contacto</a>
+                    <a href={waLink}
+                        target="_blank"
+                        rel="noopener noreferrer"    
+                        aria-label="Abrir chat de WhatsApp"
+                        className='px-6 py-2 rounded-lg text-white bg-secondary'
+                    >
+                        Contacto
+                    </a>
                     <div className='flex gap-2'>
                       <div className='flex items-center justify-center gap-2'>
                         <a
@@ -51,17 +58,22 @@ export default function NavBar() {
                     ${open ? "translate-y-0" : "translate-y-full"}`}
                 >
                     <div className="flex justify-between p-6 ">
-                        <img src="logo.png" alt="" className="w-20 pt-5"/>
+                        <img src={logo} alt="" className="w-20 pt-5"/>
                         <button onClick={() => setOpen(false)} className="text-2xl hover:cursor-pointer">
-                            <IoMdCloseCircleOutline size={35} className='text-primary'/>
+                            <IoMdCloseCircleOutline size={35} className='text-secondary'/>
                         </button>
                     </div>
                     <ul className="flex flex-col gap-4 p-10 text-center text-lg">
-                        <a href="#Inicio" className="text-xl" onClick={() => setOpen(false)}>Inicio</a>
-                        <a href="#Nosotros" className="text-xl" onClick={() => setOpen(false)}>Nosotros</a>
-                        <a href="#Productos" className="text-xl" onClick={() => setOpen(false)}>Productos</a>
-                        <a href="#Eventos" className="text-xl" onClick={() => setOpen(false)}>Eventos</a>
-                        <button className="py-2 text-2xl rounded-lg text-white bg-primary" onClick={() => setOpen(false)}>
+                        <button onClick={() => setOpen(false)}>
+                            <a href="#Inicio">Inicio</a>
+                        </button>
+                        <button onClick={() => setOpen(false)}>
+                            <a href="#Nosotros">Nosotros</a>
+                        </button>
+                        <button onClick={() => setOpen(false)}>
+                            <a href="#Modelos">Cabañas</a>
+                        </button>
+                        <button className="py-2 text-2xl rounded-lg text-white bg-secondary" onClick={() => setOpen(false)}>
                             <a
                                 href={waLink}
                                 target="_blank"

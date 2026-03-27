@@ -1,18 +1,16 @@
-import { useParams, useNavigate} from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { cabins } from "../data/cabins"
-import { TbPointFilled } from "react-icons/tb"
 import { FaArrowLeft } from "react-icons/fa"
 import { useState } from "react"
 
 export default function CabinDetails() {
   const { slug } = useParams()
   const navigate = useNavigate()
-
   const cabin = cabins.find(c => c.slug === slug)
 
-  if (!cabin) return <p>Cabaña no encontrada</p>
+  if (!cabin) return <p className="p-10 text-center text-gray-500">Cabaña no encontrada</p>
 
-  const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(1)
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const scrollLeft = e.currentTarget.scrollLeft
@@ -20,204 +18,245 @@ export default function CabinDetails() {
     const index = Math.round(scrollLeft / width) + 1
     setCurrent(index)
   }
+
   return (
-    <>
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 mb-6 text-black text-lg font-medium hover:underline hover:cursor-pointer"
+    <div className="max-w-6xl mx-auto px-5 py-8 pb-20">
+
+      {/* Volver */}
+      <button
+        onClick={() => navigate(-1)}
+        className="inline-flex items-center gap-2 mb-8 text-xs font-medium tracking-widest uppercase text-gray-400 hover:text-gray-800 transition-colors hover:cursor-pointer"
+      >
+        <FaArrowLeft className="text-[20px]" />
+        Volver
+      </button>
+
+      {/* Encabezado */}
+      <div className="mb-6">
+        <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-gray-400 mb-2">
+          Cabaña disponible
+        </p>
+        <h1
+          className="text-4xl md:text-5xl font-semibold leading-tight text-gray-900 mb-3"
+          
         >
-          <FaArrowLeft /> Volver
-        </button>
+          {cabin.name}
+        </h1>
+        <p className="text-base text-gray-500 leading-relaxed max-w-xl">
+          {cabin.description}
+        </p>
+      </div>
 
-        {/* Título  y descripcion */}
-        <div className="my-10">
-          <h1 className="text-4xl font-bold text-primary">
-            Cabaña {cabin.name}
-          </h1>
-          <p className="text-xl">
-            {cabin.description}
-          </p>
-        </div>
-
-        {/* 📱 MOBILE */}
-      <div className="relative md:hidden">
-        {/* contador estilo Airbnb */}
-        <div className="absolute top-3 right-3 bg-black/60 text-white px-4 py-2 rounded-lg backdrop-blur-sm z-10">
+      {/* ── GALERÍA MÓVIL ── */}
+      <div className="relative md:hidden mb-8">
+        <div className="absolute top-3 right-3 bg-black/60 text-white text-xs px-3 py-1.5 rounded-lg backdrop-blur-sm z-10 tracking-wide">
           {current}/{cabin.images.length}
         </div>
-
-        {/* slider */}
         <div
           onScroll={handleScroll}
-          className="-5 -mx-6 flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
+          className="-mx-5 flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
         >
           {cabin.images.map((img, index) => (
             <div key={index} className="min-w-full snap-center">
               <img
                 src={img}
-                alt={`image-${index}`}
-                className="w-full object-cover"
+                alt={`imagen-${index + 1}`}
+                className="w-full h-72 object-cover"
               />
             </div>
           ))}
         </div>
-
       </div>
-        {/* Imagen principal */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 h-150 gap-2 overflow-hidden rounded-xl">
-        {/* <div className="grid grid-cols-4 grid-rows-2 gap-2 h-105 overflow-hidden rounded-xl"> */}
 
-            {/* Imagen principal */}
-            <img
-              src={cabin.images[0]}
-              className="col-span-2 row-span-2 w-full h-full object-cover"
-            />
+      {/* ── GALERÍA DESKTOP ── */}
+      <div className="hidden md:grid grid-cols-5 grid-rows-2 gap-1.5 h-140 rounded-2xl overflow-hidden mb-10">
+        {/* Imagen principal grande */}
+        <img
+          src={cabin.images[0]}
+          alt="imagen-1"
+          className="col-span-3 row-span-2 w-full h-full object-cover"
+        />
+        {/* Imágenes secundarias */}
+        {cabin.images.slice(1, 5).map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`imagen-${index + 2}`}
+            className="col-span-1 w-full h-full object-cover"
+          />
+        ))}
+      </div>
 
-            {/* Imágenes pequeñas */}
-            <img
-              src={cabin.images[1]}
-              className="w-full h-full object-cover"
-            />
+      {/* ── CUERPO ── */}
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 lg:items-start">
 
-            <img
-              src={cabin.images[2]}
-              className="w-full h-full object-cover"
-            />
+        {/* Columna izquierda */}
+        <div className="order-2 md:order-1 flex-1 min-w-0">
 
-            <img
-              src={cabin.images[3]}
-              className="w-full h-full object-cover"
-            />
-
-          {/* última imagen con botón */}
-          <div className="relative">
-            <img
-              src={cabin.images[4]}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-        
-        <div className="flex flex-col md:flex-row justify-between">
-          
-          {/* Contenido */}
-          <div className="flex-1 grid md:grid-cols-2 gap-12 mt-12">
-            {/* Distribución */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">
-                Distribución de la cabaña
-              </h3>
-
-              <ul className="space-y-2 text-gray-700">
-                {cabin.distribution.map((distribution, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <TbPointFilled />
-                    {distribution}
-                  </li>
-                ))}
-              </ul>
+          {/* Distribución */}
+          <section>
+            <p className="text-[10px] font-medium tracking-[0.16em] uppercase text-gray-400 mb-3">
+              Distribución
+            </p>
+            <h2
+              className="text-xl font-semibold text-gray-900 mb-4"
+              
+            >
+              Espacios de la cabaña
+            </h2>
+            <div className="grid grid-cols-2 gap-2">
+              {cabin.distribution.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 px-3.5 py-2.5 bg-gray-50 rounded-lg border border-gray-100 text-sm text-gray-600"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  {item}
+                </div>
+              ))}
             </div>
+          </section>
 
-            {/* Equipamiento */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">
-                Equipada con
-              </h3>
+          <hr className="my-8 border-gray-100" />
 
-              <ul className="space-y-2 text-gray-700">
-                {cabin.equipment.map( (equiment, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <TbPointFilled />
-                    {equiment}
-                  </li>
-                ))}
-              </ul>
+          {/* Equipamiento */}
+          <section>
+            <p className="text-[10px] font-medium tracking-[0.16em] uppercase text-gray-400 mb-3">
+              Equipamiento
+            </p>
+            <h2
+              className="text-xl font-semibold text-gray-900 mb-4"
+              
+            >
+              Todo lo que necesitas
+            </h2>
+            <div className="grid grid-cols-2 gap-2">
+              {cabin.equipment.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 px-3.5 py-2.5 bg-gray-50 rounded-lg border border-gray-100 text-sm text-gray-600"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  {item}
+                </div>
+              ))}
             </div>
+          </section>
 
-          </div>
-          
-          {/* Card de precio */}
-          <div className="flex-1 my-10 bg-white shadow-xl rounded-xl p-6 h-fit">
+          <hr className="my-8 border-gray-100" />
 
-            <h2 className="text-2xl font-semibold mb-4">
-              Construcción de {cabin.size}
+          {/* Financiamiento */}
+          <section>
+            <p className="text-[10px] font-medium tracking-[0.16em] uppercase text-gray-400 mb-3">
+              Financiamiento
+            </p>
+            <h2
+              className="text-xl font-semibold text-gray-900 mb-5"
+              
+            >
+              Planes accesibles
             </h2>
 
-            <p className="text-3xl font-bold text-primary mb-6">
-              $ {cabin.price.toLocaleString()} MXN
-            </p>
+            {/* Precio y enganche */}
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-4">
+                <p className="text-[11px] text-gray-400 uppercase tracking-wide mb-1.5">
+                  Precio total
+                </p>
+                <p
+                  className="text-2xl font-semibold text-gray-900"
+                  
+                >
+                  ${cabin.price.toLocaleString()}
+                </p>
+                <p className="text-xs text-gray-400 mt-0.5">MXN</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-4">
+                <p className="text-[11px] text-gray-400 uppercase tracking-wide mb-1.5">
+                  Enganche
+                </p>
+                <p
+                  className="text-2xl font-semibold text-gray-900"
+                  
+                >
+                  ${cabin.financing.downPayment.toLocaleString()}
+                </p>
+                <p className="text-xs text-gray-400 mt-0.5">MXN</p>
+              </div>
+            </div>
 
-            <button className="w-full bg-primary text-white py-3 rounded-lg hover:bg-green-900">
+            {/* Planes de pago */}
+            <div className="border border-gray-100 rounded-xl overflow-hidden divide-y divide-gray-100">
+              {cabin.financing.plans.map((plan, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between px-4 py-4"
+                >
+                  <div>
+                    <p className="text-sm font-medium text-gray-800">
+                      {plan.label}
+                    </p>
+                    {plan.note && (
+                      <p className="text-xs text-gray-400 mt-0.5">{plan.note}</p>
+                    )}
+                  </div>
+                  <p className="text-sm font-medium text-gray-900">
+                    ${plan.amount.toLocaleString()} <span className="text-gray-400 font-normal">MXN</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* ── CARD DE PRECIO (sticky) ── */}
+        <aside className="order-1 md:order-2 w-full lg:w-75 lg:sticky lg:top-8">
+          <div className="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm">
+
+            {/* Badge tamaño */}
+            <div className="inline-flex items-center gap-2 text-[15px] font-medium tracking-widest uppercase text-primary bg-primary/10 px-3 py-1.5 rounded-full mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              {cabin.size} construcción
+            </div>
+
+            {/* Precio */}
+            <p
+              className="text-4xl font-semibold text-gray-900 leading-none mb-1"
+              
+            >
+              ${cabin.price.toLocaleString()}
+            </p>
+            <p className="text-sm text-gray-400 mb-6">MXN · precio de construcción</p>
+
+            {/* CTA principal */}
+            <button className="w-full py-3.5 bg-primary hover:scale-110 transition-all duration-200 text-white text-sm font-medium tracking-widest uppercase rounded-xl mb-3">
               Solicitar información
             </button>
 
+            {/* CTA secundario */}
+            <button className="w-full py-3 border border-gray-200 text-gray-500 hover:text-gray-800 hover:border-gray-400 text-sm rounded-xl transition-colors">
+              Agendar visita
+            </button>
+
+            <hr className="my-5 border-gray-100" />
+
+            {/* Garantías */}
+            <ul className="space-y-2.5">
+              {[
+                "Entrega en 4–6 meses",
+                "Garantía de construcción 5 años",
+                "Financiamiento flexible disponible",
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-2.5 text-xs text-gray-500">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-        
-        {/* Financiamiento */}
-        <div className="mt-20 rounded-2xl">
+        </aside>
 
-          <h2 className="text-3xl md:text-4xl font-semibold text-primary mb-12">
-            Financiamiento
-          </h2>
-
-          {/* Precio y Enganche */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-
-            <div className="bg-white rounded-xl p-6 shadow-sm border">
-              <p className="text-gray-500 text-sm mb-2">
-                Precio de construcción
-              </p>
-
-              <p className="text-3xl font-bold text-primary">
-                ${cabin.price.toLocaleString()} MXN
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-sm border">
-              <p className="text-gray-500 text-sm mb-2">
-                Enganche
-              </p>
-
-              <p className="text-3xl font-bold text-primary">
-                ${cabin.financing.downPayment.toLocaleString()} MXN
-              </p>
-            </div>
-
-          </div>
-
-          {/* Planes */}
-          <div className="bg-white rounded-xl border divide-y">
-
-            {cabin.financing.plans.map((plan, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between p-6"
-              >
-
-                <div>
-                  <p className="font-medium text-gray-800">
-                    {plan.label}
-                  </p>
-
-                  {plan.note && (
-                    <p className="text-sm text-gray-500 mt-1">
-                      {plan.note}
-                    </p>
-                  )}
-                </div>
-
-                <p className="text-lg font-semibold text-primary">
-                  ${plan.amount.toLocaleString()} MXN
-                </p>
-
-              </div>
-            ))}
-
-          </div>
-        </div>
       </div>
-    </>
+    </div>
   )
 }

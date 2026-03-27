@@ -1,3 +1,4 @@
+import Agents from '../components/Agents'
 import Footer from '../components/Footer'
 import InfoBadge from '../components/InfoBadge'
 import NavBar from '../components/NavBar'
@@ -14,6 +15,7 @@ export default function Home() {
         <OurProducts />
         <InfoBadge/>
         <AboutUs />
+        <Agents/>
         <Footer/>
         <BubbleWaButton/>
     </>

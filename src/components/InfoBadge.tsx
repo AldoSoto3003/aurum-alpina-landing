@@ -15,7 +15,7 @@ export default function InfoBadge() {
             <div className="flex items-center gap-5">
 
             {/* línea vertical */}
-            <div className="w-1 h-16 bg-primary"></div>
+            <div className="w-1 h-16 bg-secondary"></div>
 
             {/* texto */}
             <div className="flex flex-col">
@@ -25,7 +25,7 @@ export default function InfoBadge() {
 
                 <a
                     href="#proyectos"
-                    className="text-primary text-lg hover:underline"
+                    className="text-secondary text-lg hover:underline"
                 >
                     Conoce las cabañas
                 </a>
