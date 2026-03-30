@@ -1,118 +1,149 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
-import hero1 from '../assets/imgs/cabania_hero_1.jpg'
-import hero2 from '../assets/imgs/cabania_hero_2.jpg'
-import hero3 from '../assets/imgs/cabania_hero_3.jpg'
+import "../assets/css/hero.css"
+
+import hero_1_1 from '../assets/imgs/cabaña_1_1.jpg'
+import hero_2_2 from '../assets/imgs/cabania_2_2.jpg'
+import hero3_3 from '../assets/imgs/cabaña_3_3.jpg'
 
 interface Slide {
-    id: number;
-    title: string;
-    subtitle: string;
-    image: string;
+  id: number;
+  label: string;
+  title: string;
+  subtitle: string;
+  image: string;
 }
 
 const slides: Slide[] = [
   {
     id: 1,
+    label: "Construcción",
     title: "Diseño y construcción a la medida de tus necesidades",
     subtitle: "Solo necesitas el terreno. Nosotros construimos tu refugio ideal.",
-    image: hero1,
+    image: hero_1_1,
   },
   {
     id: 2,
+    label: "Personalización",
     title: "Tu cabaña en medio de la naturaleza",
     subtitle: "Personalizamos cada detalle para que tu cabaña sea única.",
-    image: hero2,
+    image: hero_2_2,
   },
   {
     id: 3,
+    label: "Inversión",
     title: "Invierte en tranquilidad",
     subtitle: "Convierte tu terreno en una propiedad rentable o tu escape perfecto.",
     image: hero3,
   },
 ];
 
+const WA_LINK = 'https://api.whatsapp.com/send?phone=5216611722565&text=Hola%2C%20estoy%20visitando%20su%20p%C3%A1gina%20web%20y%20me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20modelos%20de%20caba%C3%B1as%20y%20el%20proceso%20de%20construcci%C3%B3n.%20%C2%BFPodr%C3%ADan%20orientarme%20por%20favor%3F'
+
 export default function Hero() {
-    const waLink = 'https://api.whatsapp.com/send?phone=5216611722565&text=Hola%2C%20estoy%20visitando%20su%20p%C3%A1gina%20web%20y%20me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20modelos%20de%20caba%C3%B1as%20y%20el%20proceso%20de%20construcci%C3%B3n.%20%C2%BFPodr%C3%ADan%20orientarme%20por%20favor%3F'
-    const [ current, setCurrent ] = useState<number>(0);
+  const [current, setCurrent] = useState<number>(0);
+  const [animKey, setAnimKey] = useState<number>(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-        setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-        }, 6000);
+  const goTo = (index: number) => {
+    setCurrent(index);
+    setAnimKey(k => k + 1);
+  };
 
-        return () => clearInterval(interval);
-    }, []);
+  const startInterval = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrent(prev => {
+        const next = prev === slides.length - 1 ? 0 : prev + 1;
+        setAnimKey(k => k + 1);
+        return next;
+      });
+    }, 6000);
+  };
 
-    return (
-        <section id='Inicio' className='relative w-full h-screen overflow-hidden'>
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === current ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
+  useEffect(() => {
+    startInterval();
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, []);
+
+  const handleDotClick = (index: number) => {
+    goTo(index);
+    startInterval();
+  };
+
+  return (
+    <>
+      <section id="Inicio" className="hero-root">
+        {/* Slides */}
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`hero-slide${index === current ? ' active' : ''}`}
+          >
+            <img src={slide.image} alt={slide.title} />
+            <div className="hero-overlay" />
+          </div>
+        ))}
+
+        {/* Progress bar — re-mounts on each change via key */}
+        <div key={`progress-${animKey}`} className="hero-progress" />
+
+        {/* Content — re-mounts animations on slide change */}
+        <div className="hero-content" key={`content-${animKey}`}>
+          <span className="hero-label">0{current + 1} — {slides[current].label}</span>
+
+          <h1 className="hero-title">
+            {slides[current].title.split(' ').map((word, i, arr) =>
+              i === Math.floor(arr.length / 2) - 1
+                ? <em key={i}>{word} </em>
+                : <span key={i}>{word} </span>
+            )}
+          </h1>
+
+          <p className="hero-subtitle">{slides[current].subtitle}</p>
+
+          <div className="hero-ctas">
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir chat de WhatsApp"
+              className="btn-primary"
             >
-              {/* Imagen */}
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-              />
+              Cotizar ahora
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/50" />
+            <a href="#Modelos" className="btn-ghost">
+              Ver modelos
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 1v10M1 6l5 5 5-5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
-              {/* Contenido */}
-              <div className="absolute inset-0 top-60 flex flex-col justify-center items-center text-center px-6">
-                <h1
-                  className={`text-white text-4xl md:text-5xl font-bold max-w-4xl leading-tight transition-all
-                              duration-1000 ease-out 
-                              ${index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-50"}`}
-                >
-                {slide.title}
-              </h1>
+        {/* Side navigation — counter + dots */}
+        <div className="hero-counter">
+          <span className="hero-counter-num current">0{current + 1}</span>
+          <span className="hero-counter-num">/</span>
+          <span className="hero-counter-num">0{slides.length}</span>
 
-                <p
-                  className={`text-white/90 mt-6 text-lg md:text-xl max-w-2xl
-                              transition-all duration-1000 delay-200 ease-out font-semibold
-                              ${index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-50"}`}
-                >
-                  {slide.subtitle}
-                </p>
-
-                <div className="mt-8 flex gap-4">
-                  <a 
-                    href={waLink}
-                    target="_blank"
-                    rel="noopener noreferrer"    
-                    aria-label="Abrir chat de WhatsApp" 
-                    className="bg-secondary text-white px-6 py-3 rounded-full font-semibold transition hover:cursor-pointer hover:scale-120"
-                  >
-                    Cotizar ahora
-                  </a>
-
-                  <a
-                    href='#Modelos' 
-                    className="border border-white text-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition hover:cursor-pointer hover:scale-120">
-                    Ver modelos
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-          {/* Indicadores */}
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+          <div className="hero-dots">
             {slides.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrent(index)}
-                className={`w-3 h-3 md:w-5 md:h-5 rounded-full transition hover:cursor-pointer hover:scale-150 ${
-                  current === index ? "bg-secondary scale-125" : "bg-secondary/50"
-                }`}
+                className={`hero-dot${index === current ? ' active' : ''}`}
+                onClick={() => handleDotClick(index)}
+                aria-label={`Ir a slide ${index + 1}`}
               />
             ))}
           </div>
-        </section>
-    )
+        </div>
+
+      </section>
+    </>
+  );
 }
