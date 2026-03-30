@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from 'react'
 
 import "../assets/css/hero.css"
 
-import hero_1_1 from '../assets/imgs/cabaña_1_1.jpg'
+import hero_1_1 from '../assets/imgs/cabania_1_1.jpg'
 import hero_2_2 from '../assets/imgs/cabania_2_2.jpg'
-import hero3_3 from '../assets/imgs/cabaña_3_3.jpg'
+import hero_3_3 from '../assets/imgs/cabania_3_3.jpg'
 
 interface Slide {
   id: number;
@@ -34,7 +34,7 @@ const slides: Slide[] = [
     label: "Inversión",
     title: "Invierte en tranquilidad",
     subtitle: "Convierte tu terreno en una propiedad rentable o tu escape perfecto.",
-    image: hero3,
+    image: hero_3_3,
   },
 ];
 
