@@ -7,27 +7,38 @@ import Loader from "./components/Loader"
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
- 
+
   useEffect(() => {
-    const handleLoad = () => {
+    const waitForEverything = async () => {
+      // 1. Esperar a que el DOM + imágenes + scripts estén listos
+      if (document.readyState !== "complete") {
+        await new Promise<void>(resolve => {
+          window.addEventListener("load", () => resolve(), { once: true });
+        });
+      }
+
+      // 2. Esperar a que las fuentes estén renderizadas
+      if (document.fonts?.ready) {
+        await document.fonts.ready;
+      }
+
+      // 3. Mínimo 800ms para evitar flash del loader
+      await new Promise(resolve => setTimeout(resolve, 800));
+
       setIsLoading(false);
     };
 
-    if (document.readyState === "complete") {
-      setIsLoading(false);
-    } else {
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
-    }
+    waitForEverything();
   }, []);
 
   if (isLoading) return <Loader />;
+
   return (
     <BrowserRouter>
-      <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/cabanas/:slug" element={<CabanaDetalle/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/cabanas/:slug" element={<CabanaDetalle />} />
       </Routes>
     </BrowserRouter>
   )

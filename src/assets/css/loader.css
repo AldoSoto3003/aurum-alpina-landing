@@ -1,0 +1,33 @@
+@keyframes breath {
+    0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.92);
+    }
+    50% {
+    opacity: 1;
+    transform: scale(1.20);
+    }
+}
+
+@keyframes fadeInLoader {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeOutLine {
+    0%, 60% { width: 0%; opacity: 1; }
+    100%     { width: 100%; opacity: 1; }
+}
+
+.loader-root {
+    animation: fadeInLoader 0.4s ease forwards;
+}
+
+.loader-logo {
+    animation: breath 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+}
+
+.loader-line {
+    animation: fadeOutLine 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
